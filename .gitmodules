@@ -1,0 +1,3 @@
+[submodule "TGASharpLib"]
+	path = TGASharpLib
+	url = https://github.com/ALEXGREENALEX/TGASharpLib
