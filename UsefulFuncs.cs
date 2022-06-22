@@ -33,9 +33,11 @@ public static class UsefulFuncsClass
         string folder = Path.GetFullPath(filepath);
         string file = Path.GetFileName(filepath);
         if (isRemove)
+        {
             if (file.StartsWith("_a_"))
                 file = file.Replace("_a_", "");
-            else
+        }
+        else
             if (!file.StartsWith("_a_"))
                 file = $"_a_{file}";
         return Path.Combine(folder, file);
