@@ -2,7 +2,6 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Forms;
 using static UsefulFuncsClass;
 using TGASharpLib;
 
@@ -23,7 +22,7 @@ public static class Converter
             case "BJPGPNG":
                 return BjpgToPng(filepath, folderpath);
         }
-        return "";
+        throw new Exception("Invalid conversion method");
     }
 
     private static string JpgaToPng(string filepath, string folderpath)
@@ -56,12 +55,7 @@ public static class Converter
                 img.Dispose();
                 if (filestream.Length - filestream.Position !=
                 imgclone.Height * imgclone.Width)
-                {
-                    MessageBox.Show($"{Path.GetFileName(filepath)}" +
-                        " is not JPGA texture", "Eblan",
-                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return "";
-                }
+                    throw new Exception("File is not a JPGA texture");
                 for (int i = 0; i < imgclone.Height; i++)
                     for (int j = 0; j < imgclone.Width; j++)
                     {
