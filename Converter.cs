@@ -7,6 +7,11 @@ using TGASharpLib;
 
 public static class Converter
 {
+    /// <summary>Converts the image depending on the conversion method</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <param name="output">Conversion method type. Kludge, which was formed because original program use two ComboBoxes with extension names</param>
+    /// <returns>Path to output file or exception</returns>
     public static string Convert(string filepath, string folderpath, string output)
     {
         switch (output)
@@ -25,11 +30,17 @@ public static class Converter
         throw new Exception("Invalid conversion method");
     }
 
+    /// <summary>Convert JPG image with transparency bytes to transparent PNG</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <returns>Path to output file</returns>
     private static string JpgaToPng(string filepath, string folderpath)
     {
         string filename;
         using (var filestream = File.OpenRead(filepath))
         {
+
+            #region Skip to transparency bytes
             byte[] buffer = new byte[1000000];
             int l = 0;
             filestream.Read(buffer, 0, 1000000);
@@ -48,11 +59,15 @@ public static class Converter
             filestream.Position = (999999 * l) +
                 buffer.FindBytes(FFD9) + 2;
             buffer = null;
+            #endregion
+
             Bitmap img = (Bitmap)Image.FromFile(filepath);
             using (var imgclone = img.Clone(new Rectangle(0, 0,
                     img.Width, img.Height), PixelFormat.Format32bppArgb))
             {
                 img.Dispose();
+
+                #region Transparency bytes to real transparency
                 if (filestream.Length - filestream.Position !=
                 imgclone.Height * imgclone.Width)
                     throw new Exception("File is not a JPGA texture");
@@ -64,7 +79,9 @@ public static class Converter
                             Color.FromArgb(filestream.ReadByte(),
                             p.R, p.G, p.B));
                     }
-                filename = IncrFilename(filepath.TGATag(true),
+                #endregion
+
+                filename = IncrFilename(filepath.JpgaTag(true),
                     folderpath, "png");
                 imgclone.Save(filename, ImageFormat.Png);
             }
@@ -73,19 +90,35 @@ public static class Converter
         return filename;
     }
 
+    /// <summary>Convert PNG image to JPG with transparency bytes</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <returns>Path to output file</returns>
     private static string PngToJpga(string filepath, string folderpath)
     {
-        string filename = IncrFilename(filepath.TGATag(),
+        string filename = IncrFilename(filepath.JpgaTag(),
             folderpath, "jpg");
         using (var filestr = File.Open(filename,
             FileMode.CreateNew, FileAccess.ReadWrite))
         {
             using (var img = (Bitmap)Image.FromFile(filepath))
             {
+                #region Convert image to jpg
+
+                #region ArpanJpegEncoder Code
                 BaseJPEGEncoder encoder = new BaseJPEGEncoder();
                 encoder.EncodeImageToJpg(img, new BinaryWriter(filestr));
                 encoder = null;
+                #endregion
+
+                #region Unused Code
+                //img.Save(filestr, ImageFormat.Jpeg);
+                #endregion
+
                 GC.Collect();
+                #endregion
+
+                #region Replace FFD9
                 byte[] alpha = new byte[1000000];
                 int l = 0;
                 filestr.Read(alpha, 0, 1000000);
@@ -104,6 +137,9 @@ public static class Converter
                     filestr.Read(alpha, 1, 999999);
                     l++;
                 }
+                #endregion
+
+                #region Write transparency bytes
                 Array.Clear(alpha, 0, 1000000);
                 l = 0;
                 for (int i = 0; i < img.Height; i++)
@@ -121,12 +157,17 @@ public static class Converter
                     }
                 filestr.Write(alpha, 0, l);
                 alpha = null;
+                #endregion
             }
         }
         GC.Collect();
         return filename;
     }
 
+    /// <summary>Convert TGA image to PNG. Uses TGASharpLib library</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <returns>Path to output file</returns>
     private static string TgaToPng(string filepath, string folderpath)
     {
         string filename = IncrFilename(filepath, folderpath, "png");
@@ -135,6 +176,10 @@ public static class Converter
         return filename;
     }
 
+    /// <summary>Convert PNG image to TGA. Uses TGASharpLib library</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <returns>Path to output file</returns>
     private static string PngToTga(string filepath, string folderpath)
     {
         string filename = IncrFilename(filepath, folderpath, "tga");
@@ -142,6 +187,10 @@ public static class Converter
         return filename;
     }
 
+    /// <summary>Convert JPG image with black background to transparent PNG</summary>
+    /// <param name="filepath">Path to input file</param>
+    /// <param name="folderpath">Path to output folder</param>
+    /// <returns>Path to output file</returns>
     private static string BjpgToPng(string filepath, string folderpath)
     {
         string filename = IncrFilename(filepath, folderpath, "png");
@@ -150,12 +199,16 @@ public static class Converter
                 img.Width, img.Height), PixelFormat.Format32bppArgb))
         {
             img.Dispose();
+
+            #region Replace shades of black with transparency
             for (int i = 0; i < imgclone.Height; i++)
                 for (int j = 0; j < imgclone.Width; j++)
                 {
                     Color p = imgclone.GetPixel(j, i);
                     imgclone.SetPixel(j, i, p.ClearBlack());
                 }
+            #endregion
+
             imgclone.Save(filename, ImageFormat.Png);
         }
         return filename;
