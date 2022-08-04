@@ -42,7 +42,7 @@ Idc, it works great for me.
 # Communication
 
 ### For whom the program was created
-- Discord server [Super Cow Cowmoonity](https://discord.com/invite/JzCvwh5)
+- Discord server [Super Cow Cowmoonity](https://discord.com/invite/JzCvwh5) (RUS)
 
 ### If you have any questions or suggestions about the code
 - Discord - `Creepobot#9299`
