@@ -46,3 +46,7 @@ string fromto = combobox1.Text + combobox2.Text;
 
 ### Если есть вопросы или пожелания насчёт кода
 - Дискорд - `Creepobot#9299`
+
+
+## README на других языках
+[ENG](https://github.com/Creepobot/SupercowTexturesTool/blob/main/README.md)
