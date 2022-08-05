@@ -46,3 +46,7 @@ Idc, it works great for me.
 
 ### If you have any questions or suggestions about the code
 - Discord - `Creepobot#9299`
+
+
+## README in other languages
+[RUS](https://github.com/Creepobot/SupercowTexturesTool/blob/main/README_RU.md)
