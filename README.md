@@ -1,13 +1,17 @@
 # SupercowTexturesTool
 WinForms application for importing/exporting sprites from Supercow game
 
-## Installation
+## Usage
+
+### Installation
 
 1. Download latest version [here](https://github.com/Creepobot/supercow-textures-tool/releases/latest)
 2. ???
 3. You're breathtaking!
 
-## Usage
+### Requirements
+
+- .NET Framework 3.5
 
 ### Designations
 - JPGA - `.jpg` image with an embedded silhouette that simulates transparency. In the game, such textures usually have `_a_` at the beginning of the name. Used for most sprites in the game.
