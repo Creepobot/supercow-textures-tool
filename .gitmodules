@@ -1,6 +1,0 @@
-[submodule "TGASharpLib"]
-	path = TGASharpLib
-	url = https://github.com/ALEXGREENALEX/TGASharpLib
-[submodule "ArpanJpegEncoder"]
-	path = ArpanJpegEncoder
-	url = https://github.com/b9chris/ArpanJpegEncoder
