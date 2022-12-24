@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1" xml:space="preserve">
+    <value>The program was created exclusively for changing sprites in the Supercow game by one of the participants of the discord server Super Сow Cowmoonity.
+
+Speaking of sprites, the designation of terms used in the program:
+
+JPGA - jpg image with an embedded silhouette that simulates transparency. In the game, such textures usually have "_a_" at the beginning of the name. Used for most sprites in the game.
+
+TGA - common but rather old image format. Can be a replacement for JPGA, but is often used by the game separately.
+
+BJPG - jpg image with a black background that should become transparent. Can be replaced with JPGA, but this is never used in the game. Used extremely rarely and mainly for particles or smth.</value>
+  </data>
+  <data name="2" xml:space="preserve">
+    <value>Fuck, I don't give a fuck about you, fucking listen. What textures you have there, fucking models, sounds, fucking plots, everything I don't give a fuck there. At least "Supercow The Hero", at least, fuck it, "Supercow: Reverse mod", at least "Supercow: Chaos mod", though "Supercow: Google Translated", fuck, even the editor I don't give a shit about it, you know? How much are you fucking, with what bugs, with what, then, these tank programmers, pumped up or smeared with oil, fuck, does a cow in your mod fly into space - I don't give a shit about it, you know? I'm so fucking full of my knowledge that it's like I've been fucking living on trillions and trillions of the same levels as 11-48 for a hundred trillion billion years, you know? Like 0-9. This world is already absolutely clear to me, and I'm looking for only one fucking thing here: peace, tranquility and this harmony from merging with the infinitely eternal, from contemplating this great fractal similarity and from this wonderful unity of the infinitely eternal being wherever you look: even into the depths infinitely small, even up infinitely big, you know? And you're back to me with your own, there, this. Go, fuss on, your distribution is your path and your horizon of knowledge, sensation and your nature. And he's immeasurably small compared to mine, you know? It's like I'm already a deep old man immortal or, there, almost immortal, who with this game from its very development, even when programmers just started writing the game and this is spaghetti, here, after creating the engine, when the developers caught fire with the idea, like a star, and began to form collisions-hitboxes, do you understand? It's like I've been living for 11-48 for almost five billion fucking years and I know it inside and out, this whole world, and you're there for me, some of these. I don't give a fuck about your textures, your fucking plots, your models, there, for your good, you know? I was in this game, so to speak, in an infinite set, and cooler than Vasiliev, and cooler than Yuri, fuck, and cooler than all the greats, you know, was? And somewhere there was a finished shit, even worse than a DanFire. Because I feel a lot of these states. Somewhere I was more like a plant, somewhere I was more like a bird, there, a snail, somewhere there was just a clot of stone thrown by a mole. It's all the soul, you know? It has facets of similarity that are completely diverse, an infinite set. But you don't understand that, so you go fuck yourself, eblan. In this world, we seem to live with different feelings, different aspirations. Accordingly, our location is different, our distribution is different. I wish you, all the coolest models that you have, and all the best mods, so that cows run through the levels there, in all the cracks topsy-turvy, fucking, like on a carpet, this is the same, revealed secrets and fucked enemies. And you to fuck with bugs, until you're blue, until you're red, until the sunset sun. To use the best tools, editors and cum right out of pleasure and everything that can only come to mind and not come. If you don't have enough ideas, contact me, I will tell you for each of your ideas hundreds of trillions more how to do what. Well, what about me? I am walking like a deep elder who has seen the eternal, touched the divine, has become godlike himself and aspires to this infinite, who is in peace, peace, harmony, grace, in this innermost bliss, involved in everything and in everything, do you understand? That's all. That's our difference. So, I'm going to admire the universe, and you're going to be filled with some facets of some. That's the difference, you know? You don't see this eternal infinite, you don't need it. But on the other hand, you are, so to speak, more active, like this pecking woodpecker or ant, which is very active in its path, that's all. So come on, our paths here, so to speak, have, of course, facets of similarity, because everything is one, but you are meвЂ¦ I understand you perfectly, but you hardly do, because, as it were, I, you and, as it were, I contain you in myself your whole nature, it makes up one small, there, grain of sand from what is in me, do you understand? That's all. So let's go, go, and I went to enjoy the fucking beautiful autumn sunset, fucking, on the bank of a warm southern river. That's it, fuck the furrow and I fucked the fuck up</value>
+  </data>
+</root>
