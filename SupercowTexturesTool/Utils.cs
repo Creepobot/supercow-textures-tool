@@ -96,16 +96,18 @@ namespace SupercowTexturesTool
         private static Bitmap BJPG(string filename)
         {
             Bitmap img = (Bitmap)Image.FromFile(filename);
-            using (Bitmap imgclone = img.Clone(new Rectangle(0, 0,
-                    img.Width, img.Height), PixelFormat.Format32bppArgb))
+            Bitmap imgclone = img.Clone(new Rectangle(0, 0,
+                    img.Width, img.Height), PixelFormat.Format32bppArgb);
+            img.Dispose();
+            using (LockBitmap lb = new LockBitmap(imgclone))
             {
-                img.Dispose();
-                using (LockBitmap lbm = new LockBitmap(imgclone))
-                    for (int i = 0; i < imgclone.Height; i++)
-                        for (int j = 0; j < imgclone.Width; j++)
-                            lbm.SetPixel(j, i, ClearBlack(lbm.GetPixel(j, i)));
-                return imgclone;
+                lb.LockBits();
+                for (int i = 0; i < imgclone.Height; i++)
+                    for (int j = 0; j < imgclone.Width; j++)
+                        lb.SetPixel(j, i, ClearBlack(lb.GetPixel(j, i)));
+                lb.UnlockBits();
             }
+            return imgclone;
         }
 
         public static string JPGATag(ref string filepath, bool isRemove = true)
@@ -194,7 +196,15 @@ namespace SupercowTexturesTool
             using (Graphics g = Graphics.FromImage(bmp))
             {
                 g.FillRectangle(Brushes.White, 0, 0, 300, 300);
-                g.DrawRectangle(new Pen(Color.Black, 2), 0, 0, 300, 300);
+                g.DrawRectangle(new Pen(Color.Black, 2), 0, 0, 150, 150);
+                g.DrawRectangle(new Pen(Color.Black, 2), 150, 150, 150, 150);
+                g.DrawRectangle(new Pen(Color.Black, 2), 150, 0, 150, 150);
+                g.DrawRectangle(new Pen(Color.Black, 2), 0, 150, 150, 150);
+                g.FillRectangle(Brushes.White, 5, 5, 290, 290);
+                g.FillRectangle(Brushes.White, 0, 5, 300, 140);
+                g.FillRectangle(Brushes.White, 5, 0, 140, 300);
+                g.FillRectangle(Brushes.White, 0, 155, 300, 140);
+                g.FillRectangle(Brushes.White, 155, 0, 140, 300);
                 StringFormat sf = new StringFormat
                 { Alignment = StringAlignment.Center,
                     LineAlignment = StringAlignment.Center };

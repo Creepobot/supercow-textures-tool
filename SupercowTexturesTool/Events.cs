@@ -44,18 +44,18 @@ namespace SupercowTexturesTool
                     var test = Path.Combine(folder, JPGATag(ref result[i][0]));
                     exportedImg = BitmapFromFile(FileFromBitmap(importedImg, test), false);
                     pictureBox2.Image = ResizeImage(exportedImg, 300);
-                    result[i][2] = "Done";
+                    result[i][3] = "Done";
                     converdone++;
                 }
                 catch (Exception ex)
                 {
-                    result[i][2] = $"Error: {ex.Message}{ex.StackTrace}";
+                    result[i][3] = $"Error: {ex.Message}{ex.StackTrace}";
                     converrs++;
                 }
                 finally
                 {
                     timer.Stop();
-                    result[i][3] = $"{timer.ElapsedMilliseconds} ms";
+                    result[i][2] = $"{timer.ElapsedMilliseconds} ms";
                     Clear(importedImg);
                     Clear(exportedImg);
                 }
