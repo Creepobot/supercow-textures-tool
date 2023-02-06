@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace SupercowTexturesTool
 {
-    //TODO: Переписать код под универсальность, пихнуть весь текст куда-нибудь в ресурсы, добавить еблану рандом из массива
+    //TODO: добавить еблану рандом из массива
     public partial class Form1 : Form
     {
         public Form1()
@@ -66,14 +66,7 @@ namespace SupercowTexturesTool
             DefaultTextColor(richlabel1, $"{e.ProgressPercentage}/{files.Length}");
 
         private void Worker_Completed(object s, RunWorkerCompletedEventArgs e)
-        {
-            SetLog(); BringToFront(); Activate();
-            using (UnmanagedMemoryStream str = converdone != 0 ?
-                Properties.Resources.done : Properties.Resources.allerror)
-            using (SoundPlayer snd = new SoundPlayer(str))
-                snd.Play();
-            ToggleUI();
-        }
+        { SetLog(); BringToFront(); Activate(); ToggleUI(); }
 
         private void Drop(object s, DragEventArgs e)
         {
@@ -159,11 +152,11 @@ namespace SupercowTexturesTool
 
             if (ebl == str.Length)
             {
-                pictureBox1.BackgroundImage = Properties.Resources.eblan;
-                pictureBox2.BackgroundImage = Properties.Resources.eblan;
                 using (UnmanagedMemoryStream stream = Properties.Resources.vineboom)
                     using (SoundPlayer snd = new SoundPlayer(stream))
                         snd.Play();
+                pictureBox1.BackgroundImage = Properties.Resources.eblan;
+                pictureBox2.BackgroundImage = Properties.Resources.eblan;
                 KeyPress -= Form1_KeyPress;
             }
         }

@@ -1,6 +1,5 @@
 ﻿using EblanModule;
 using Nevosoft;
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -87,6 +86,14 @@ namespace SupercowTexturesTool
                     TGA.FromBitmap(img).Save(filepath);
                     break;
                 case "BJPG":
+                    using (LockBitmap lb = new LockBitmap(img))
+                    {
+                        lb.LockBits();
+                        for (int i = 0; i < img.Height; i++)
+                            for (int j = 0; j < img.Width; j++)
+                                lb.SetPixel(j, i, AddBlack(lb.GetPixel(j, i)));
+                        lb.UnlockBits();
+                    }
                     img.Save(filepath, ImageFormat.Jpeg);
                     break;
             }
@@ -159,11 +166,11 @@ namespace SupercowTexturesTool
             comboBox2.SelectedIndex = 0;
         }
 
-        public static Color ClearBlack(Color c)
-        {
-            return Color.FromArgb((int)(255 *
-                c.GetBrightness()), c.R, c.G, c.B);
-        }
+        public static Color ClearBlack(Color c) =>
+            Color.FromArgb((int)(255 * c.GetBrightness()), c);
+
+        public static Color AddBlack(Color c) =>
+            Color.FromArgb(c.R * c.A / 255, c.G * c.A / 255, c.B * c.A / 255);
 
         public static Bitmap ResizeImage(Bitmap img, int size)
         {

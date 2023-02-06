@@ -4,6 +4,7 @@
 
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -1425,30 +1426,35 @@ namespace JpegEncoder
             }
         }
 
+        private unsafe static byte[] BytesFromBitmap(Bitmap bmp, out long stride)
+        {
+            BitmapData bData = bmp.LockBits(new Rectangle(new Point(), bmp.Size), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+
+            int bufferSize = bData.Stride * Math.Abs(bmp.Height);
+            byte[] buffer = new byte[bufferSize];
+            Marshal.Copy(bData.Scan0, buffer, 0, bufferSize);
+
+            bmp.UnlockBits(bData);
+            stride = bData.Stride;
+            return buffer;
+        }
+
         public static byte[,,] Fill_Image_Buffer(Bitmap bmp, IProgress progress, ICurrentOperation operation)
         {
             operation?.SetOperation(CurrentOperation.FillImageBuffer);
-
             Point originalSize = GetActualDimension(new Point(bmp.Width, bmp.Height));
             byte[,,] Bitmap_Buffer = new byte[originalSize.X, originalSize.Y, 3];
 
-            using (LockBitmap lb = new LockBitmap(bmp))
+            long stride = 0;
+            byte[] raw = BytesFromBitmap(bmp, out stride);
+            for (int y = 0; y < bmp.Height; y++)
             {
-                lb.LockBits();
-                Color color;
-                for (int y = 0; y < bmp.Height; y++)
-                {
-                    for (int x = 0; x < bmp.Width; x++)
-                    {
-                        color = lb.GetPixel(x, y);
-                        Bitmap_Buffer[x, y, 0] = color.R;
-                        Bitmap_Buffer[x, y, 1] = color.G;
-                        Bitmap_Buffer[x, y, 2] = color.B;
-                    }
-                }
-                lb.UnlockBits();
+                long offset = y * stride;
+                progress?.SetProgress((int)raw.GetLength(0), (int)offset);
+                for (int x = 0; x < bmp.Width; x++)
+                    for (int channel = 2; channel >= 0; channel--)
+                        Bitmap_Buffer[x, y, channel] = raw[offset++];
             }
-
             return Bitmap_Buffer;
         }
 
