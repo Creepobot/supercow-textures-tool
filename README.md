@@ -25,14 +25,6 @@ WinForms application for importing/exporting sprites from Supercow game
 - Сan convert multiple files at once
 - Supports drag-n-drop
 
-# Build
-
-### Requirements
-
-- .NET Framework 3.5
-
-That's all, folks!
-
 # Communication
 
 ### For whom the program was created
