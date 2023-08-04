@@ -28,7 +28,7 @@ WinForms application for importing/exporting sprites from Supercow game
 # Communication
 
 ### For whom the program was created
-- Discord server [SuperCow Cowmoonity](https://discord.com/invite/JzCvwh5)
+- Discord server [SuperCow Cowmoonity](https://discord.supercow.community/)
 
 ### If you have any questions or suggestions
 - Discord - `Creepobot#9299`
